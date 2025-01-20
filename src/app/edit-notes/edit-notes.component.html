@@ -1,0 +1,19 @@
+<div class="container">
+    <a routerLink="/view/" class="btn btn-warning">Back to Dhasboard</a>
+    <form #f="ngForm" (ngSubmit)="updatedate()">
+        <label class="form-label">Enter Your Title:</label>
+        <input type="text" class="form-control" required minlength="5" name="title" [(ngModel)]="Objt.title" #t="ngModel">
+        <div *ngIf="t.invalid && (t.touched || t.dirty)" class="text-danger">
+            <p *ngIf="t.errors?.['required']">Please Enter Your Title..</p>
+            <p *ngIf="t.errors?.['minlength']">Please Enter Atleast 5 character</p>
+        </div>
+        <label class="form-label">Write Your Article:</label>
+        <textarea class="form-control" rows="10" cols="50" required minlength="30" maxlength="300" name="content" [(ngModel)]="Objt.content" #c="ngModel"></textarea>
+        <div *ngIf="c.invalid && (c.touched || c.dirty)" class="text-danger">
+            <p *ngIf="c.errors?.['required']">Please Write Your Content..</p>
+            <p *ngIf="c.errors?.['minlength']">Please Enter Atleast min 30 character</p>
+            <p *ngIf="c.errors?.['maxlength']">Please Enter Atleast min 300 character</p>
+        </div>
+        <input type="submit" class="btn btn-success" style="margin-top: 15px;" [disabled]="f.invalid">
+    </form>
+</div>
